@@ -10,7 +10,7 @@ const sharp = require('sharp');
 const app = express();
 
 // MongoDB connection
-mongoose.connect("mongodb+srv://kumarayush0926:V9TNMT5743SC9l02@tara.0gmn5.mongodb.net/tara?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGODB_URL)
     .then(() => console.log('Database connected successfully'))
     .catch(err => console.error('Database connection error:', err));
 
@@ -92,8 +92,8 @@ const Feedback = mongoose.model('Feedback', feedbackSchema)
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: "darkutkarsh68699@gmail.com",
-        pass: "cjja isph tffr zons",
+        user: process.env.USER,
+        pass: process.env.PASSWORD,
     },
 });
 
