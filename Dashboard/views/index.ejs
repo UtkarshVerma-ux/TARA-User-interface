@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TARA: Tracking And Recognition Attendance</title>
+    <link rel="stylesheet" href="<%= 'styles/index.css' %>">
+    <script src="/js/index.js" type="text/javascript" defer></script>
+</head>
+<body>
+    <div class="container">
+        <img src="<%= '/images/logo/logo.png' %>" alt="TARA Logo" class="logo" />
+        <h1>Welcome Back</h1>
+        <div class="login-form">
+            <p>Login as</p>
+            <div class="role-selection">
+                <label>
+                    <input type="radio" name="role" value="teacher" id="teacher" required />
+                    Teacher
+                </label>
+                <label>
+                    <input type="radio" name="role" value="student" id="student" required />
+                    Student
+                </label>
+            </div>
+            <button type="button" onclick="showLoginForm()" id="submit-btn">Submit</button>
+        </div>
+    </div>
+
+    <!-- Teacher Login Form -->
+    <div id="teacher-form" class="login-detail-form" style="display: none;">
+        <h2>Teacher Login</h2>
+        <input type="email" id="teacher-username" placeholder="Enter your email" required aria-label="Teacher Email" />
+        <button type="button" id="teacher-otp-btn" onclick="getOtp('teacher-username', 'teacher')">Get OTP</button>
+        <input type="text" id="teacher-username-otp-input" placeholder="Enter OTP" disabled required aria-label="Teacher OTP" />
+        <button type="button" id="teacher-login-btn" onclick="verifyOtp('teacher-username', 'teacher')" disabled>Login</button>
+        <button type="button" onclick="cancelForm()">Cancel</button>
+        <p class="register-option">Not yet registered? <a href="<%= '/register/?role=teacher' %>">Register as Teacher</a></p>
+    </div>
+
+    <!-- Student Login Form -->
+    <div id="student-form" class="login-detail-form" style="display: none;">
+        <h2>Student Login</h2>
+        <input type="email" id="student-username" placeholder="Enter your email" required aria-label="Student Email" />
+        <button type="button" id="student-otp-btn" onclick="getOtp('student-username', 'student')">Get OTP</button>
+        <input type="text" id="student-username-otp-input" placeholder="Enter OTP" disabled required aria-label="Student OTP" />
+        <button type="button" id="student-login-btn" onclick="verifyOtp('student-username', 'student')" disabled>Login</button>
+        <button type="button" onclick="cancelForm()">Cancel</button>
+        <p class="register-option">Not yet registered? <a href="<%= '/register/?role=student' %>">Register as Student</a></p>
+    </div>
+</body>
+</html>
